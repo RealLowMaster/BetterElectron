@@ -1,0 +1,17 @@
+{
+	"appName": "APP_NAME",
+	"appVersion": "1.0.0",
+	"appId": "me.yourname.app_name",
+	"appUpdateNumber": 0,
+	"isSingleInstance": true,
+	"appIcons": {
+		"appTitlebar": "asset/favicon-32x32.png",
+		"appFile": "asset/favicon.ico",
+		"taskbar": "asset/favicon.ico"
+	},
+	"author": {
+		"name": "Auther Name"
+	},
+	"copyright": "Copyright © 2024 [YourName]",
+	"license": "MIT"
+}

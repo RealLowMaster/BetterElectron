@@ -1,0 +1,9 @@
+build/
+node_modules/
+test/
+add to js-addons/
+setting.json
+yarn.lock
+package-lock.json
+task.txt
+out/

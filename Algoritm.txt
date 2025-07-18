@@ -1,0 +1,11 @@
+
+
+Config 
+
+
+
+
+  Config Files -> Compile Config File To Vanilla JS for best performance
+
+	Add System to check if  css file are needed to be load for some of the module
+	Add System to the Statup that load only the need modules 

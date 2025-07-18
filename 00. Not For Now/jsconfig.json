@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES6",
+		"allowSyntheticDefaultImports": true,
+		"declaration": false,
+		"esModuleInterop": false,
+		"isolatedModules": false,
+		"declarationMap": false,
+		"allowJs": true,
+		"checkJs": false,
+		"typeRoots": ["./node_modules", "./@types"],
+		"types": ["LowElectron"],
+		"allowUmdGlobalAccess": false
+	},
+	"exclude": ["./node_modules", "**/node_modules/*"]
+}

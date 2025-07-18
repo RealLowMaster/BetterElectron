@@ -1,0 +1,98 @@
+{
+	"name": "project-name",
+	"version": "1.0.0",
+	"description": "APP_DESCRIPTION",
+	"main": "index.js",
+	"author": "RealLowMaster",
+	"private": false,
+	"keywords": [
+		"better-electron",
+		"betterelectron",
+		"electronjs",
+		"npm",
+		"nodejs",
+		"database",
+		"desktop",
+		"framework",
+		"ui-component"
+	],
+	"build": {
+		"appId": "me.lowmaster.app_name",
+		"productName": "APP_NAME",
+		"copyright": "Copyright © 2024 LowMaster",
+		"compression": "maximum",
+		"directories": {
+			"output": "build"
+		},
+		"mac": {
+			"category": "public.app-category.tools",
+			"target": [
+				"dmg"
+			],
+			"icon": "image/favicon.icns"
+		},
+		"dmg": {
+			"icon": "image/favicon.icns",
+			"iconSize": 100,
+			"window": {
+				"width": 544,
+				"height": 408
+			},
+			"contents": [
+				{
+					"x": 110,
+					"y": 150
+				},
+				{
+					"x": 240,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				}
+			]
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"icon": "image/favicon-32x32.png"
+		},
+		"win": {
+			"target": "NSIS",
+			"publisherName": "LowMaster",
+			"icon": "image/favicon.ico"
+		},
+		"asar": true,
+		"nsis": {
+			"allowToChangeInstallationDirectory": true,
+			"oneClick": false
+		}
+	},
+	"scripts": {
+		"test": "node ./test",
+		"run": "electron .",
+		"compile": "electron-builder",
+		"release": "node ./LE/ReleaseApp.js",
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make --arch=\"ia32,x64\"",
+		"publish": "electron-forge publish",
+		"compiler-test": "node \"./LE/Compilers/cli.js\"",
+		"compiler-list": "node \"./LE/Compilers/cli.js\" -cl",
+		"compiler-help": "node \"./LE/Compilers/cli.js\" -h",
+		"compile-main-config": "node \"./LE/Compilers/cli.js\" -v -h -i \"./App/BetterElectron.json\" -o \"./build/BetterElectron.js"
+	},
+	"repository": "https://github.com/RealLowMaster/BetterElectron",
+	"bugs": "https://github.com/RealLowMaster/BetterElectron/issues",
+	"dependencies": {
+		"@electron/remote": "^2.1.2",
+		"autocompleter": "^9.3.2",
+		"electron-squirrel-startup": "^1.0.1",
+		"quasar": "^2.16.11",
+		"request-light": "^0.8.0"
+	},
+	"devDependencies": {
+		"electron": "^22.3.27"
+	}
+}

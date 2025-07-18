@@ -1,0 +1,49 @@
+{
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"json.schemaDownload.enable": true,
+	"json.format.enable": true,
+	"workbench.settings.useSplitJSON": false,
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"/.vscode/schema/LE.json",
+				"/.vscode/schema/pkg.json",
+				"/.vscode/schema/template.setting.checkbox.json",
+			],
+			"url": "/.vscode/schema/draft-07.json"
+		},
+		{
+			"fileMatch": [
+				"/App/Main.json"
+			],
+			"url": "/.vscode/schema/Main.json"
+		},
+		{
+			"fileMatch": [
+				"/jsconfig.json"
+			],
+			"url": "/.vscode/schema/jscon.json"
+		}
+	],
+	"liveSassCompile.settings.compileOnWatch": false,
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "expanded",
+			"extensionName": ".css",
+			"savePath": "/LE",
+			"savePathReplacementPairs": null,
+			"generateMap": false
+		}
+	],
+	"liveSassCompile.settings.includeItems": [
+		"/LE/scss/main.scss"
+	],
+	"liveSassCompile.settings.useNewCompiler": true,
+	"scss.format.enable": true,
+	"prettier.useTabs": true,
+	"js/ts.implicitProjectConfig.module": "CommonJS",
+	"js/ts.implicitProjectConfig.target": "ES6",
+	"typescript.check.npmIsInstalled": true,
+}

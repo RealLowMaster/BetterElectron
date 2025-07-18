@@ -1,0 +1,51 @@
+
+Add Premade Components {
+	Autocomplete
+	Badge
+	Banner
+	Bottom app bar
+	Bottom sheet
+	Card
+	Data table
+	Date picker
+	Navigation bar
+	Navigation drawer
+	Navigation rail
+	Search
+	Segmented button
+	Snackbar
+	Time picker
+	Top app bar
+	Tooltip
+	Features
+	✅ Color theming
+	✅ Typography theming
+	Components
+	✅ Button
+	✅ FAB
+	✅ Icon button
+	✅ Checkbox
+	✅ Chips
+	✅ Dialog
+	✅ Divider
+	✅ Elevation
+	✅ Focus ring
+	✅ List
+	✅ Menu
+	✅ Progress indicators
+	✅ Radio
+	✅ Ripple
+	✅ Select
+	✅ Slider
+	✅ Switch
+	✅ Tabs
+	✅ Text field
+
+	Layouts {
+		Spacing
+		Parts of layout
+		Density
+		Hardware considerations
+		Bidirectionality & RTL
+	}
+}

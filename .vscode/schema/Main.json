@@ -1,0 +1,599 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "lowelectron.schema.config",
+	"title": "LowElectron Config",
+	"type": "object",
+	"propertyNames": true,
+	"additionalProperties": false,
+	"definitions": {
+		"Author": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"title": "Author Name",
+					"description": "write author name.",
+					"type": "string"
+				},
+				"github": {
+					"title": "Github Profile",
+					"description": "link to the author Github Profile",
+					"type": "string"
+				},
+				"website": {
+					"title": "Author WebSite",
+					"description": "link to the author WebSite",
+					"type": "string"
+				},
+				"email": {
+					"title": "Author Email",
+					"description": "write the author email",
+					"type": "string",
+					"format": "email"
+				}
+			},
+			"required": [
+				"name"
+			],
+			"examples": [
+				{
+					"name": "Author Name"
+				}
+			]
+		},
+		"Publisher": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"title": "Publisher Name",
+					"description": "write publisher name.",
+					"type": "string"
+				},
+				"github": {
+					"title": "Github Profile",
+					"description": "link to the publisher Github Profile",
+					"type": "string"
+				},
+				"website": {
+					"title": "Publisher WebSite",
+					"description": "link to the publisher WebSite",
+					"type": "string"
+				},
+				"email": {
+					"title": "Publisher Email",
+					"description": "write the publisher email",
+					"type": "string",
+					"format": "email"
+				}
+			},
+			"required": [
+				"name"
+			],
+			"examples": [
+				{
+					"name": "Publisher Name"
+				}
+			]
+		},
+		"Paths": {
+			"pattern": "^([a-zA-Z][:][/])?([a-zA-Z/ ';]+)?(({dirName}|{app}|{appData}|{cache}|{crashDumps}|{desktop}|{documents}|{downloads}|{exe}|{home}|{logs}|{module}|{music}|{pictures}|{recent}|{temp}|{userData}|{videos})+)?([a-zA-Z/ ';]+)?$"
+		},
+		"AppDirectory": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"title": "Folder Creator Type",
+					"description": "select folder creaton PathType.\nType lowElectron: get path from app.getPath() then add {appFoldersName} to it.\nType rawPath: get path from app.getPath() without any change.\nType customName: get path from app.getPath() then add your \"customName\" property to it.\nDefault is \"lowElectron\"",
+					"markdownDescription": "select folder creaton PathType.\n\n**Type `lowElectron`**: get path from `app.getPath()` then add {`appFoldersName`} to it.\n\n**Type `rawPath`**: get path from `app.getPath()` without any change.\n\n**Type `customName`**: get path from `app.getPath()` then add your `\"customName\"` property to it.\n\nDefault is `\"lowElectron\"`",
+					"type": "string",
+					"enum": [
+						"lowElectron",
+						"rawPath",
+						"customName"
+					],
+					"default": "lowElectron"
+				},
+				"customName": {
+					"title": "Custom Folder Name",
+					"description": "write your own custom folder name.\n*use this property if you set \"type\" to \"customName\"*",
+					"markdownDescription": "write your own custom folder name.\n\n**Use this property if you set `\"type\"` to `\"customName\"`**",
+					"type": "string",
+					"pattern": "^([a-zA-Z0-9]+)$"
+				}
+			},
+			"examples": [
+				{
+					"type": "rawPath"
+				},
+				{
+					"type": "customName",
+					"customName": "YourCustomName"
+				}
+			],
+			"default": {}
+		},
+		"license": {
+			"anyOf": [
+				{
+					"type": "string"
+				},
+				{
+					"enum": [
+						"AGPL-3.0-only",
+						"Apache-2.0",
+						"BSD-2-Clause",
+						"BSD-3-Clause",
+						"BSL-1.0",
+						"CC0-1.0",
+						"CDDL-1.0",
+						"CDDL-1.1",
+						"EPL-1.0",
+						"EPL-2.0",
+						"GPL-2.0-only",
+						"GPL-3.0-only",
+						"ISC",
+						"LGPL-2.0-only",
+						"LGPL-2.1-only",
+						"LGPL-2.1-or-later",
+						"LGPL-3.0-only",
+						"LGPL-3.0-or-later",
+						"MIT",
+						"MPL-2.0",
+						"MS-PL",
+						"UNLICENSED"
+					]
+				}
+			]
+		}
+	},
+	"properties": {
+		"appName": {
+			"description": "write your Application Name.",
+			"markdownDescription": "write your **`Application Name`**.",
+			"type": "string",
+			"examples": [
+				"APP_NAME"
+			]
+		},
+		"appVersion": {
+			"description": "write your Application Version.",
+			"markdownDescription": "write your **`Application Version`**.",
+			"type": "string",
+			"examples": [
+				"1.0.0"
+			],
+			"pattern": "^([0-9]+[.][0-9]+[.][0-9]+)$"
+		},
+		"appId": {
+			"description": "write your Application ID.\nExample: \"me.lowmaster.my_app_name\"",
+			"markdownDescription": "write your **`Application ID`**.\n\n**Example**: `\"me.lowmaster.my_app_name\"`",
+			"type": "string",
+			"examples": [
+				"me.yourname.app_name"
+			],
+			"pattern": "^([a-z]+[.][a-z_]+[.][a-z_]+)$"
+		},
+		"appUpdateNumber": {
+			"description": "set the Update Number of this version of app.",
+			"markdownDescription": "set the **Update Number** of this version of app.",
+			"type": "number",
+			"examples": [
+				0
+			]
+		},
+		"isSingleInstance": {
+			"description": "set app to be single-insatnce or multi-instance.\nDefault is: true",
+			"markdownDescription": "set app to be **single-instance** or not.\n\nDefault is: `true`",
+			"type": "boolean",
+			"default": true
+		},
+		"appTitle": {
+			"description": "set custom default title for Application. you can change app title in runtime too, this is just for startup.\nDefault is: \"APP_NAME vAPP_VERSION\"",
+			"markdownDescription": "set custom default title for Application. you can change app title in runtime too, this is just for startup.\n\nDefault is: `\"APP_NAME vAPP_VERSION\"`",
+			"type": "string"
+		},
+		"appDescription": {
+			"description": "write a description for your App",
+			"type": "string"
+		},
+		"appIcons": {
+			"additionalProperties": false,
+			"type": "object",
+			"description": "App Icons Path, Sorted by Icon Usage",
+			"properties": {
+				"appTitlebar": {
+					"description": "a PNG/JPG/WebP/GIF 32x32 image for in app Titlebar Icon.",
+					"markdownDescription": "a `PNG/JPG/WebP/GIF` 32x32 image for in app Titlebar Icon.",
+					"type": "string",
+					"examples": [
+						"asset/favicon-32x32.png"
+					]
+				},
+				"appFile": {
+					"description": "an Icon image to be used as app execution file Icon.\ntype of Icon is depends on your platform (windows, linux, mac).",
+					"markdownDescription": "an Icon image to be used as app execution file Icon.\n\ntype of Icon is depends on your platform (`windows`, `linux`, `mac`).",
+					"type": "string",
+					"examples": [
+						"asset/favicon.ico"
+					]
+				},
+				"taskbar": {
+					"description": "an Icon image to be used as app taskbar, etc... Icon.\nallowed formats: PNG/JPG + on Windows it Support ICO.\nyou can leave it undefined so executable's Icon will be used!",
+					"markdownDescription": "an Icon image to be used as **app taskbar, etc...** Icon.\n\nallowed formats: `PNG/JPG` + on Windows it Support `ICO`.\n\n**you can leave it undefined so executable's Icon will be used!**",
+					"type": "string",
+					"examples": [
+						"asset/favicon.ico"
+					]
+				}
+			}
+		},
+		"author": {
+			"description": "The Application Author or List of Authors",
+			"markdownDescription": "The Application `Author`or `List of Authors`",
+			"anyOf": [
+				{
+					"$ref": "#/definitions/Author"
+				},
+				{
+					"items": {
+						"$ref": "#/definitions/Author"
+					},
+					"type": "array"
+				}
+			]
+		},
+		"publisher": {
+			"description": "The Application Publisher or List of Publishers",
+			"markdownDescription": "The Application `Publisher` or `List of Publishers`",
+			"anyOf": [
+				{
+					"$ref": "#/definitions/Publisher"
+				},
+				{
+					"items": {
+						"$ref": "#/definitions/Publisher"
+					},
+					"type": "array"
+				}
+			]
+		},
+		"copyright": {
+			"description": "write your own Copyright Text.",
+			"markdownDescription": "write your own `Copyright Text`.",
+			"type": "string",
+			"examples": [
+				"Copyright © 2024 [YourName]"
+			]
+		},
+		"appFoldersName": {
+			"description": "write Application Folders/Directories Name. This property will be use in \"AppPaths\".\nDefault is: automaticaly generated from \"appName\"",
+			"markdownDescription": "write Application `Folder/Directory` Name. This property will be use in `\"AppPaths\"`.\n\nDefault is: automaticaly generated from `\"appName\"`",
+			"type": "string",
+			"pattern": "^([a-zA-Z0-9_]+)$"
+		},
+		"license": {
+			"description": "write a license type name or custom license.\nExamples: \"MIT\", \"Apache-2\", etc...",
+			"markdownDescription": "write a license type name or custom license.\n\nExamples: `\"MIT\"`, `\"Apache-2\"`, etc...",
+			"$ref": "#/definitions/license"
+		},
+		"AppWindow": {
+			"title": "Application Window Configs",
+			"description": "write Application Window Configs",
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"minWidth": {
+					"description": "Window's minimum Width in pixels.\nDefault is: 800",
+					"markdownDescription": "**Window's** minimum **Width** in pixels.\n\nDefault is: `800`",
+					"type": "number",
+					"default": 800
+				},
+				"minHeight": {
+					"description": "Window's minimum Height in pixels.\nDefault is: 600",
+					"markdownDescription": "**Window's** minimum **Height** in pixels.\n\nDefault is: `600`",
+					"type": "number",
+					"default": 600
+				},
+				"width": {
+					"description": "Window's Width in pixels.\nDefault is: 800",
+					"markdownDescription": "**Window's width** in pixels.\n\nDefault is: `800`",
+					"type": "number",
+					"default": 800
+				},
+				"height": {
+					"description": "Window's Height in pixels.\nDefault is: 600",
+					"markdownDescription": "**Window's Height** in pixels.\n\nDefault is: `600`",
+					"type": "number",
+					"default": 600
+				},
+				"maxWidth": {
+					"description": "Window's maximum Width.\nDefault is: no limit",
+					"markdownDescription": "**Window's** maximum **Width**.\n\nDefault is: `no limit`",
+					"type": "number"
+				},
+				"maxHeight": {
+					"description": "Window's maximum height.\nDefault is: no limit",
+					"markdownDescription": "**Window's** maximum **Height**.\n\nDefault is: `no limit`",
+					"type": "number"
+				},
+				"backgroundColor": {
+					"description": "Window's Background Color as a HEX value, like #66CD00 or #FFF.\nDefault is: #FFF (white)",
+					"markdownDescription": "**Window's Background Color** as a **HEX** value, like `#66CD00` or `#FFF`.\n\nDefault is: `#FFF (white)`",
+					"type": "string",
+					"default": "#FFF",
+					"pattern": "^(([#][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])|([#][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])|([#][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])|([#][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]))$"
+				},
+				"center": {
+					"description": "Show window in the center of the screen.\nDefault is: true",
+					"markdownDescription": "Show window in the center of the screen.\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"movable": {
+					"description": "Whether window is movable. This is not implemented on Linux.\nDefault is true.",
+					"markdownDescription": "Whether window is movable. This is not implemented on Linux.\n\nDefault is `true`.",
+					"type": "boolean",
+					"default": true
+				},
+				"minimizable": {
+					"description": "Whether window is minimizable.\n*This is not for Linux*\nDefault is: true",
+					"markdownDescription": "Whether window is minimizable.\n\n**This is not for `Linux`!**\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"maximizable": {
+					"description": "Whether window is maximizable.\n*This is not for Linux*\nDefault is: true",
+					"markdownDescription": "Whether window is maximizable.\n\n**This is not for `Linux`!**\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"fullscreenable": {
+					"description": "Whether window is fullscreenable.\nDefault is: true",
+					"markdownDescription": "Whether window is fullscreenable.\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"resizable": {
+					"description": "Whether window is resizable.\nDefault is: true",
+					"markdownDescription": "Whether window is resizable.\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"alwaysOnTop": {
+					"description": "Whether the window should always stay on top of other windows.\nDefault is false",
+					"markdownDescription": "Whether the window should always stay on top of other windows.\n\nDefault is: `false`",
+					"type": "boolean",
+					"default": false
+				},
+				"focusable": {
+					"description": "Whether the window can be focused.\nDefault is: true",
+					"markdownDescription": "Whether the window can be focused.\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"skipTaskbar": {
+					"description": "Show Window in Taskbar.\nDefault is: false",
+					"markdownDescription": "Show Window in Taskbar.\n\nDefault is: `false`",
+					"type": "boolean",
+					"default": false
+				},
+				"hasShadow": {
+					"description": "Whether window should have shadow.\nDefault is: true",
+					"markdownDescription": "Whether window should have shadow.\n\nDefault is: `true`",
+					"type": "boolean",
+					"default": true
+				},
+				"paintWhenInitiallyHidden": {
+					"description": "Whether the renderer should be active when show is false and it has just been created. In order for document.visibilityState to work correctly on first load with show: false you should set this to false. Setting this to false will cause the ready-to-show event to not fire.\nDefault is true.",
+					"markdownDescription": "Whether the renderer should be active when `show` is `false` and it has just been created. In order for `document.visibilityState` to work correctly on first load with `show: false` you should set this to `false`. Setting this to `false` will cause the `ready-to-show` event to not fire.\n\nDefault is `true`.",
+					"type": "boolean",
+					"default": true
+				},
+				"preload": {
+					"description": "Specifis a script that will be loaded before other scripts run in page.\nDefault is: null",
+					"markdownDescription": "Specifis a script that will be loaded before other scripts run in page.\n\nDefault is: `null`",
+					"type": "string"
+				},
+				"startupWindowMode": {
+					"description": "set in which Mode should Window be at startup, if Allowed!\nDefault is: maximized",
+					"markdownDescription": "set in which Mode should Window be at startup, **if Allowed!**\n\nDefault is: `maximized`",
+					"type": "string",
+					"enum": [
+						"maximized",
+						"fullscreen",
+						"windowed"
+					],
+					"default": "maximized"
+				}
+			}
+		},
+		"AppPaths": {
+			"description": "Automatic Default App Directory Creator.\nIt will add Allowed directories Path to *LE.Path*.\nAll directories will be created at app strartup.",
+			"markdownDescription": "**Automatic Default App Directory Creator**.\n\nIt will add Allowed directories Path to `LE.Path`.\n\nAll directories will be created at app strartup.",
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"documents": {
+					"title": "User Document Folder",
+					"description": "Example: C:\\Users\\UserName\\Documents\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Documents\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"temp": {
+					"title": "User Temp Folder",
+					"description": "Example: C:\\Temp\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Temp\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"cache": {
+					"title": "User Caches Folder",
+					"description": "Example: C:\\Users\\UserName\\AppData\\Roaming\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\AppData\\Roaming\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"downloads": {
+					"title": "User Downloads Folder",
+					"description": "Example: C:\\Users\\UserName\\Downloads\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Downloads\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"music": {
+					"title": "User Music Folder",
+					"description": "Example: C:\\Users\\UserName\\Music\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Music\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"pictures": {
+					"title": "User Pictures Folder",
+					"description": "Example: C:\\Users\\UserName\\Pictures\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Pictures\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"videos": {
+					"title": "User Videos Folder",
+					"description": "Example: C:\\Users\\UserName\\Videos\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Videos\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"appData": {
+					"title": "User AppData Folder",
+					"description": "Example: C:\\Users\\UserName\\AppData\\Roaming{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\AppData\\Roaming{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"userData": {
+					"title": "User User Datas Folder",
+					"description": "Example: C:\\Users\\UserName\\AppData\\Roaming\\app-name\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\AppData\\Roaming\\{app-name}\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"desktop": {
+					"title": "User Desktop Folder",
+					"description": "Example: C:\\Users\\UserName\\Desktop\\{appFoldersName}.\nExample Default false:",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\Desktop\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"crashDumps": {
+					"title": "User CrachDumps Folder",
+					"description": "Example: C:\\Users\\UserName\\AppData\\Roaming\\{app-name}\\Crashpad\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\AppData\\Roaming\\{app-name}\\Crashpad\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"home": {
+					"title": "User Home Folder",
+					"description": "Example: C:\\Users\\UserName\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				},
+				"logs": {
+					"title": "User Logs Folder",
+					"description": "Example: C:\\Users\\UserName\\AppData\\Roaming\\{app-name}\\Electron\\logs\\{appFoldersName}",
+					"markdownDescription": "**Example**: `C:\\Users\\UserName\\AppData\\Roaming\\{app-name}\\Electron\\logs\\{appFoldersName}`",
+					"$ref": "#/definitions/AppDirectory"
+				}
+			}
+		},
+		"CustomPaths": {
+			"title": "Custom Paths",
+			"description": "You can add Absolute Paths so they Will be in LE.Path and they will be created when app is loading.",
+			"markdownDescription": "You can add **Absolute Paths** so they Will be in **`LE.Path`** and they will be created when app is loading.",
+			"type": "object",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"path": {
+						"type": "string",
+						"title": "The Path",
+						"description": "write your own path\nReplaces: {app} => return application path, {dirName} => same as __dirname, Any of available values in app.getPath() (ex. {downloads} ).\nExample: \"C:/Users/UserName/Documents/my-custom-folder\".",
+						"markdownDescription": "write your own path\n\n**Replaces**: `{app}` => return application path, `{dirName}` => same as `__dirname`, Any of available values in `app.getPath()` (ex. `{downloads}`).\n\n**Example 1**: `\"C:/Users/UserName/Documents/my-custom-folder\"`.\n\n**Example 2**: `\"{documents}/my-custom-folder\"`.",
+						"$ref": "#/definitions/Paths"
+					},
+					"ignoreLevel": {
+						"title": "Ignore Level",
+						"description": "set how important is this path creation.\nLevel high: it will stop user from using app an it will show an error to user.\nLevel medium: it will only show user an error and user can still use app\nLevel low: it won't show any error to user and user still can use the app, its value in LE.Path will be null.",
+						"type": "string",
+						"enum": [
+							"high",
+							"medium",
+							"low"
+						]
+					},
+					"onError": {
+						"description": "set what to do when we have error on creating this path.",
+						"type": "object",
+						"properties": {
+							"type": {
+								"description": "choose type of value Property.\nType text: the value property gonna be a message to user onError.\nType lang: the value property gonna be name of the language manager property.\nType function: the value property should be name of a function that will be execute onError with 1 arg whitch is error massage.",
+								"markdownDescription": "choose type of value Property.\n\nType `text`: the value property gonna be a message to user **onError**.\n\nType `lang`: the value property gonna be name of the language manager property.\n\nType `function`: the value property should be name of a function that will be execute **onError** with **1** arg whitch is error massage.",
+								"type": "string",
+								"enum": [
+									"text",
+									"lang",
+									"function"
+								]
+							},
+							"value": {
+								"description": "set onError event action.\nThe value is fully depends on type property!",
+								"markdownDescription": "set **onError** event action.\n\nThe `value` is **fully depends** on `type` property!",
+								"type": "string"
+							}
+						},
+						"examples": [
+							{
+								"type": "text",
+								"value": ""
+							},
+							{
+								"type": "lang",
+								"value": ""
+							},
+							{
+								"type": "function",
+								"value": ""
+							}
+						],
+						"additionalProperties": false,
+						"required": [
+							"type",
+							"value"
+						]
+					}
+				},
+				"examples": [
+					{
+						"path": "",
+						"ignoreLevel": "high"
+					},
+					{
+						"path": "",
+						"ignoreLevel": "high",
+						"onError": {
+							"type": "text",
+							"text": ""
+						}
+					}
+				],
+				"additionalProperties": false,
+				"required": [
+					"path",
+					"ignoreLevel",
+					"onError"
+				]
+			}
+		},
+		"settingPath": {
+			"description": "write where the settings file should be saved.\nit should be name of AppPaths or CustomPaths.\nDefault is: documents",
+			"markdownDescription": "write where the settings file should be saved.\n\nIt should be name of `AppPaths` or `CustomPaths`.\n\nDefault is: `documents`",
+			"type": "string",
+			"default": "documents"
+		}
+	},
+	"required": [
+		"appName",
+		"appVersion",
+		"appId",
+		"appUpdateNumber"
+	]
+}
