@@ -87,9 +87,6 @@
 	"bugs": "https://github.com/RealLowMaster/BetterElectron/issues",
 	"dependencies": {
 		"@electron/remote": "^2.1.2",
-		"autocompleter": "^9.3.2",
-		"electron-squirrel-startup": "^1.0.1",
-		"quasar": "^2.16.11",
 		"request-light": "^0.8.0"
 	},
 	"devDependencies": {

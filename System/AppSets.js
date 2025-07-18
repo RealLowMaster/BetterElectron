@@ -9,16 +9,7 @@ function SetHotKeys() {
 	KeyManager.AddHotKey('setting', 27, CloseSetting) // Esc
 }
 
-function SetContextMenus() {
-	let i = ContextManger.AddMenu('default')
-	ContextManger.AddItem(i, { text: 'light' })
-	ContextManger.AddItem(i, { text: 'dark', click: "console.log('test')" })
-	ContextManger.AddItem(i, { text: 'yes', click: "console.log('test')" })
-	ContextManger.AddItem(i, {})
-	ContextManger.AddItem(i, { icon: 'xmark', text: 'no', click: "console.log('test')" })
-	ContextManger.AddItem(i, { text: 'cancel', click: "console.log('test')" })
-	ContextManger.AddEvent(i, document.body)
-}
+
 
 function SetDatabases() {
 	let i
