@@ -1,4 +1,23 @@
 
+CSS id = {
+	window = be-window
+	window-titlebar = be-titlebar
+	window-menu = be-menu
+	window-body = be-body
+
+	setting-window = be-settings
+	setting-tabs = be-setting-sections
+	setting-body = be-setting-tabs
+	setting-exit-btn = be-setting-exit
+	setting-save-btn = be-setting-save
+}
+
+Add Default Language = {
+	close-settings = Close Settings
+	save-settings = Save Settings
+}
+
+
 Add Premade Components {
 	Autocomplete
 	Badge

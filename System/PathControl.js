@@ -1,4 +1,9 @@
+// import { app } from 'electron'
 
+/**
+ * a List contains name of paths
+ * @returns {string[]}
+ */
 export const PATH_NAME = [
 	'dirName',
 	'app',
