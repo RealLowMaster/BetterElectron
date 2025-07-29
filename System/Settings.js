@@ -83,7 +83,7 @@
 </div>
 */
 
-export class Settings {
+module.exports = class Settings {
 	#con // Container
 	#sec // sections
 	#tabs

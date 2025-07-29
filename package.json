@@ -72,16 +72,13 @@
 	"scripts": {
 		"test": "node ./test",
 		"run": "electron .",
-		"compile": "electron-builder",
+		"compile-app": "electron-builder",
 		"release": "node ./LE/ReleaseApp.js",
 		"start": "electron-forge start",
 		"package": "electron-forge package",
 		"make": "electron-forge make --arch=\"ia32,x64\"",
 		"publish": "electron-forge publish",
-		"compiler-test": "node \"./LE/Compilers/cli.js\"",
-		"compiler-list": "node \"./LE/Compilers/cli.js\" -cl",
-		"compiler-help": "node \"./LE/Compilers/cli.js\" -h",
-		"compile-main-config": "node \"./LE/Compilers/cli.js\" -v -h -i \"./App/BetterElectron.json\" -o \"./build/BetterElectron.js"
+		"compile": "node ./System/Compiler.js"
 	},
 	"repository": "https://github.com/RealLowMaster/BetterElectron",
 	"bugs": "https://github.com/RealLowMaster/BetterElectron/issues",
