@@ -1,7 +1,7 @@
 {
-	"name": "project-name",
+	"name": "better-electron",
 	"version": "1.0.0",
-	"description": "APP_DESCRIPTION",
+	"description": "a Better Version of Electron.js with functions that all apps needed!",
 	"main": "index.js",
 	"author": "RealLowMaster",
 	"private": false,
@@ -70,8 +70,12 @@
 		}
 	},
 	"scripts": {
-		"test": "node ./test",
+		"compile-config": "node ./BettterElectron/compile-config.js",
+
 		"run": "electron .",
+
+
+		"test": "node ./test",
 		"compile-app": "electron-builder",
 		"release": "node ./LE/ReleaseApp.js",
 		"start": "electron-forge start",

@@ -1,4 +1,8 @@
 
+Add forge.config.js
+
+Change LE to BE
+
 CSS id = {
 	window = be-window
 	window-titlebar = be-titlebar

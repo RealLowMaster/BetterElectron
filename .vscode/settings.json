@@ -15,12 +15,6 @@
 		},
 		{
 			"fileMatch": [
-				"/App/Main.json"
-			],
-			"url": "/.vscode/schema/Main.json"
-		},
-		{
-			"fileMatch": [
 				"/jsconfig.json"
 			],
 			"url": "/.vscode/schema/jscon.json"

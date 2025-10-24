@@ -1,0 +1,126 @@
+Checkout After Build {
+	app.getPath('cache') == app.getPath('appData') if not Fix LowElectron Config Schemas
+}
+
+Add Component system {
+	load components at Startup
+	each components with sass or css file
+}
+
+
+
+Add Fetch Like Class => like request packages
+
+LowElectron.json {
+	"appIconPNG" => "appIcons"
+	"Window" => "AppWindow"
+}
+#ADD Below Properties To Schema {
+	x: undefined,
+	y: undefined,
+	enableLargerThanScreen: false,
+	acceptFirstMouse: false,
+	disableAutoHideCursor: false,
+	fullscreen: false,
+	icon: undefined,
+	kiosk: false,
+	roundedCorners: true,
+	simpleFullscreen: false,
+	tabbingIdentifier: undefined,
+	thickFrame: true,
+	trafficLightPosition: undefined,
+	type: undefined,
+	vibrancy: undefined,
+	visualEffectState: undefined,
+	webPreferences: {
+		// [C]
+	}
+}
+#ADD Below Properties LowElectron->CustomPaths->{X}-> {
+	onExists
+	onCreated
+}
+
+Add About Panel
+
+Add HTML/CSS Components
+Add Documentation
+
+Add TMP System
+Add Error System
+
+Remake Loading System
+Remake Notification System
+
+Fix Bug: When There is an Error App Won't Lunch Properly
+Add Ability To Manage Contact US
+Add Ability To Customize App Default Components Like: ContextMenu, Setting, Loading, etc...
+Add Ability To Set setting Save Path
+Update System
+Add Selector Support To Setting
+Add Animation Support
+Add Setting Manager
+Add Panel Maker
+Add Children Support For ContextMenu
+Add Font To Languages
+Add App Menu and ability to change title
+Ability To change App menu in runtime
+Ability To Add Template to app menu system
+
+DatabaseManager => {
+	Corrupted spell check
+	Add Error Tell When Startup the app
+	Add Option To have Edited Date To DB File
+	add backup system
+	add folder make
+	add Update DB version system
+}
+
+[ADD] {
+	default-classes.js [ADD] Converting Database Versions
+}
+[FIX]
+[C] = continue from here
+
+Search For Words {
+	Corrupted -> default-class
+}
+
+#Dream {
+	Make This Framework that work with Views {
+		/App
+			- /view
+				- Main.html
+				- Main.AddUser.html
+				- Main.RemoveUser.html
+				- Page2.html
+				- Page2.SubView.html
+			- /module
+				- Main.js
+				- Main.AddUser.js
+				- Main.RemoveUser.js
+			- /style
+				- Main.css
+				- Main.AddUser.css
+				- Main.RemoveUser.css
+			- /js
+				- AppSets.js
+				- custom.js
+			- /css
+				- public.css
+			- LowElectron.json
+	}
+	Views => {
+		NameSyntax -> PageName.SubViewName.html
+		Each View can have a Module.js. (optional)
+		Each View can have separate Style.css that gonna be on top off public CSS files. (optional)
+	}
+	Module => {
+		module of View can have Events like onViewLoaded/onViewUnload/etc...
+	}
+	style => {
+		CSS styles for a View
+	}
+	js => public JavaScript Files that are always loaded and can be used in any view or etc...
+	css => public CSS Files
+}
