@@ -70,7 +70,6 @@
     }
   },
   "scripts": {
-    "compile-config": "node ./BettterElectron/compile-config.js",
     "run": "electron .",
     "test": "node ./test",
     "compile-app": "electron-builder",
@@ -79,7 +78,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "compile": "node ./System/Compiler.js"
+    "compile": "node ./BettterElectron/compile.js"
   },
   "repository": "https://github.com/RealLowMaster/BetterElectron",
   "bugs": "https://github.com/RealLowMaster/BetterElectron/issues",

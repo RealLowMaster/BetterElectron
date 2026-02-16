@@ -4,4 +4,6 @@ const cfg = new AppPathsConfig()
 
 // cfg.documents()
 
+// cfg.documents()
+
 module.exports = cfg

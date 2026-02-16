@@ -1,4 +1,4 @@
-const { existsSync } = require('fs')
+const { existsSync, writeFileSync, readFileSync } = require('fs')
 const { join } = require('path')
 const MetaDataConfig = require('./modules/meta-data-config')
 const AppWindowConfig = require('./modules/app-window-config')
@@ -48,6 +48,37 @@ const WindowNeeds = {
 	title: AppInfo.title
 }
 Object.assign(WindowConfig, WindowNeeds)
+
+console.log(AppDirs)
+/*{
+  name: 'APP_NAME',
+  platform: 'win32',
+  arch: 'x64',
+  version: '1.0.0',
+  id: 'com.reallowmaster.better_electron',
+  updateNumber: 0,
+  isSingleInstance: true,
+  title: 'APP_NAME v1.0.0',
+  appFolderName: 'APP NAME',
+  description: 'App Description Example.',
+  copyright: 'Copyright © 2024 [YourName]',
+  license: 'MIT',
+  author: [
+    {
+      name: 'RealLowMaster',
+      github: 'https://github.com/RealLowMaster',
+      website: 'https://github.com/RealLowMaster'
+    }
+  ],
+  publisher: [
+    {
+      name: 'RealLowMaster',
+      github: 'https://github.com/RealLowMaster',
+      website: 'https://github.com/RealLowMaster'
+    }
+  ]
+}*/
+// console.log(WindowConfig)
 
 
 // const win = new BrowserWindow(WindowConfig)
