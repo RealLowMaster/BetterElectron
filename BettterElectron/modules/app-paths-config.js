@@ -7,13 +7,14 @@
  */
 module.exports = class AppPathsConfig {
 	#invalidFileNameChars = /[<>:"/\\|?*]/g
-	#c = {}
-
+	#c
 
 	/**
 	 * Application Paths
 	 */
-	constructor() {}
+	constructor() {
+		this.#c = {}
+	}
 
 
 	/**

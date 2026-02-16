@@ -1,4 +1,4 @@
-const MetaDataConfig = require('./../BettterElectron/meta-data-config')
+const MetaDataConfig = require('../BettterElectron/modules/meta-data-config')
 
 const cfg = new MetaDataConfig(
 	"APP_NAME",

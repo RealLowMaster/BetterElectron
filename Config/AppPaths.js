@@ -1,4 +1,4 @@
-const AppPathsConfig = require('../BettterElectron/app-paths-config')
+const AppPathsConfig = require('../BettterElectron/modules/app-paths-config')
 
 const cfg = new AppPathsConfig()
 

@@ -2,35 +2,38 @@
  * Module for AppWindow Config File
  */
 module.exports = class AppWindowConfig {
-	#c = {
-		minWidth: 800,
-		minHeight: 600,
-		width: 800,
-		height: 600,
-		maxWidth: undefined,
-		maxHeight: undefined,
-		backgroundColor: '#FFF',
-		center: true,
-		movable: true,
-		minimizable: true,
-		maximizable: true,
-		fullscreenable: true,
-		resizable: true,
-		alwaysOnTop: false,
-		focusable: true,
-		skipTaskbar: false,
-		hasShadow: true,
-		paintWhenInitiallyHidden: true,
-		webPreferences: {
-			// enableRemoteModule: true,
-			nodeIntegration: true,
-			contextIsolation: false
-		}
-	}
+	#c
 	/**
 	 * Application Window Configs
 	 */
-	constructor() {}
+	constructor() {
+		// Set Default Values
+		this.#c = {
+			minWidth: 800,
+			minHeight: 600,
+			width: 800,
+			height: 600,
+			maxWidth: undefined,
+			maxHeight: undefined,
+			backgroundColor: '#FFF',
+			center: true,
+			movable: true,
+			minimizable: true,
+			maximizable: true,
+			fullscreenable: true,
+			resizable: true,
+			alwaysOnTop: false,
+			focusable: true,
+			skipTaskbar: false,
+			hasShadow: true,
+			paintWhenInitiallyHidden: true,
+			webPreferences: {
+				// enableRemoteModule: true,
+				nodeIntegration: true,
+				contextIsolation: false
+			}
+		}
+	}
 
 	/**
 	 * **Window's** minimum **Width** in pixels.

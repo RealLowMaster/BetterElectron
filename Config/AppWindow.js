@@ -1,4 +1,4 @@
-const AppWindowConfig = require('../BettterElectron/app-window-config')
+const AppWindowConfig = require('../BettterElectron/modules/app-window-config')
 
 const cfg = new AppWindowConfig()
 

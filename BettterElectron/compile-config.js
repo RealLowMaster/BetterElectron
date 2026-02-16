@@ -1,12 +1,9 @@
 const { existsSync } = require('fs')
 const { join } = require('path')
-const MetaDataConfig = require('./meta-data-config')
-const AppWindowConfig = require('./app-window-config')
-const AppPathsConfig = require('./app-paths-config')
+const MetaDataConfig = require('./modules/meta-data-config')
+const AppWindowConfig = require('./modules/app-window-config')
+const AppPathsConfig = require('./modules/app-paths-config')
 
-class TLcal {
-	constructor() {}
-}
 
 // Check Config Folder Exists
 const CfgDir = join(__dirname, '../', 'Config')
