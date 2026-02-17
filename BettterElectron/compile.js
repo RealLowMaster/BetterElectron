@@ -32,6 +32,7 @@ if (!(AppPaths instanceof AppPathsConfig)) throw new Error('AppPaths should be a
 const AppInfo = MetaData.AppInfo
 const WindowConfig = AppWindow.Config
 const AppDirs = AppPaths.Paths
+const SettingPath = AppPaths.settingPath
 
 //* Set BetterElectron Window's Needed Properties
 const WindowNeeds = {
@@ -50,6 +51,7 @@ const WindowNeeds = {
 Object.assign(WindowConfig, WindowNeeds)
 
 console.log(AppDirs)
+console.log(SettingPath)
 /*{
   name: 'APP_NAME',
   platform: 'win32',
@@ -78,7 +80,29 @@ console.log(AppDirs)
     }
   ]
 }*/
-// console.log(WindowConfig)
 
 
 // const win = new BrowserWindow(WindowConfig)
+
+/*
+const ReplacePathValues = str => {
+	if (str.includes('{dirName}')) str = str.replace(/\{dirName\}/g, __dirname)
+	if (str.includes('{app}')) str = str.replace(/\{app\}/g, app.getAppPath())
+	if (str.includes('{appData}')) str = str.replace(/\{appData\}/g, app.getPath('appData'))
+	if (str.includes('{cache}')) str = str.replace(/\{cache\}/g, app.getPath('cache'))
+	if (str.includes('{crashDumps}')) str = str.replace(/\{crashDumps\}/g, app.getPath('crashDumps'))
+	if (str.includes('{desktop}')) str = str.replace(/\{desktop\}/g, app.getPath('desktop'))
+	if (str.includes('{documents}')) str = str.replace(/\{documents\}/g, app.getPath('documents'))
+	if (str.includes('{downloads}')) str = str.replace(/\{downloads\}/g, app.getPath('downloads'))
+	if (str.includes('{exe}')) str = str.replace(/\{exe\}/g, app.getPath('exe'))
+	if (str.includes('{home}')) str = str.replace(/\{home\}/g, app.getPath('home'))
+	if (str.includes('{module}')) str = str.replace(/\{module\}/g, app.getPath('module'))
+	if (str.includes('{music}')) str = str.replace(/\{music\}/g, app.getPath('music'))
+	if (str.includes('{pictures}')) str = str.replace(/\{pictures\}/g, app.getPath('pictures'))
+	if (str.includes('{recent}')) str = str.replace(/\{recent\}/g, app.getPath('recent'))
+	if (str.includes('{temp}')) str = str.replace(/\{temp\}/g, app.getPath('temp'))
+	if (str.includes('{userData}')) str = str.replace(/\{userData\}/g, app.getPath('userData'))
+	if (str.includes('{videos}')) str = str.replace(/\{videos\}/g, app.getPath('videos'))
+	return str
+}
+*/

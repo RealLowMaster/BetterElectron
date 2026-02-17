@@ -7,6 +7,7 @@
  */
 module.exports = class AppPathsConfig {
 	#invalidFileNameChars = /[<>:"/\\|?*]/g
+	#validPath = /^((([a-zA-Z][:][/\\])([a-zA-Z0-9-_ ]+)?)|{app}|{appData}|{cache}|{crashDumps}|{desktop}|{documents}|{downloads}|{exe}|{home}|{logs}|{module}|{music}|{pictures}|{recent}|{temp}|{userData}|{videos})((([/\\][a-zA-Z0-9-_ ]+)|(([/\\])?{appFoldersName})([a-zA-Z0-9-_ ]+)?)+)?([/\\])?$/
 	#c
 	#s
 
@@ -274,28 +275,42 @@ module.exports = class AppPathsConfig {
 	}
 
 	/**
-	 * set where the setting file should be stored.
+	 * add path with custom name to be created.
 	 * 
-	 * Default path is app folder.
+	 * You can use:
+	 * `{app}`, `{appFoldersName}`, `{appData}`, `{cache}`, `{crashDumps}`, `{desktop}`, `{documents}`, `{downloads}`, `{exe}`, `{home}`, `{logs}`, `{module}`, `{music}`, `{pictures}`, `{recent}`, `{temp}`, `{userData}`,  `{videos}`,
+	 * in path value, they will be replaced with their own value.
 	 * 
-	 * @param {string|undefined} pathName -  write name of path that you already added, if `undefined` setting file will be stored at app folder.
+	 * @param {string} name - how to call this path
+	 * @param {string} path - the Directory Path
 	 */
-	setSetting(pathName) {
+	addPath(name, path) {
+		// Check Name
+		if (typeof name != 'string' || name.length == 0) throw new TypeError('Config->AppPaths->addPath: name should be a string!')
+		if (this.#c[name] != undefined) throw new Error('Config->AppPaths->addPath: path with the same name("' + name + '") already exists!')
 		
-		console.log(this.#c[pathName])
-		console.log(typeof this.#c[pathName])
-		// if (typeof this.#c[pathName] != 'string')
-		this.#s.
+		// Check Path
+		if (typeof path != 'string' || path.replace(/ /g, '').length == 0) throw new TypeError('Config->AppPaths->addPath: path should be a string!')
+
+		if (this.#validPath.exec(path) == null) throw new Error('Config->AppPaths->addPath: path is not valid!')
+		
+		this.#c[name] = path
 	}
 
+	/**
+	 * where the setting file should be stored.
+	 * 
+	 * @param {string|undefined} v -  write name of path that you already added, if `undefined` setting file will be stored at app folder.
+	 * @default undefined => Application Folder
+	 */
 	set settingPath(v) {
 		if (v === undefined) {
 			this.#s = undefined
 			return
 		}
 		if (typeof v == 'string' && v.replace(/ /g, '').length > 0) {
-			console.log(v)
-			// #[Continue] ******************
+			if (this.#c[v] == undefined) throw new Error("Config->AppPaths->settingPath: you haven't added the path called '" + v + "' to the Config!")
+			this.#s = v
 			return
 		}
 		throw new TypeError('Config->AppPaths->settingPath: should be string or undefined!')
@@ -313,70 +328,4 @@ module.exports = class AppPathsConfig {
 	get Paths() {
 		return this.#c
 	}
-
 }
-
-/*
-if (Object.getOwnPropertyNames(this.#c).length == 0) this.documents()
-const patterns = {
-	Paths: /^([a-zA-Z][:][/])?([a-zA-Z/ ';]+)?(({dirName}|{app}|{appData}|{cache}|{crashDumps}|{desktop}|{documents}|{downloads}|{exe}|{home}|{logs}|{module}|{music}|{pictures}|{recent}|{temp}|{userData}|{videos})+)?([a-zA-Z/ ';]+)?$/
-}
-const ReplacePathValues = str => {
-	if (str.includes('{dirName}')) str = str.replace(/\{dirName\}/g, __dirname)
-	if (str.includes('{app}')) str = str.replace(/\{app\}/g, app.getAppPath())
-	if (str.includes('{appData}')) str = str.replace(/\{appData\}/g, app.getPath('appData'))
-	if (str.includes('{cache}')) str = str.replace(/\{cache\}/g, app.getPath('cache'))
-	if (str.includes('{crashDumps}')) str = str.replace(/\{crashDumps\}/g, app.getPath('crashDumps'))
-	if (str.includes('{desktop}')) str = str.replace(/\{desktop\}/g, app.getPath('desktop'))
-	if (str.includes('{documents}')) str = str.replace(/\{documents\}/g, app.getPath('documents'))
-	if (str.includes('{downloads}')) str = str.replace(/\{downloads\}/g, app.getPath('downloads'))
-	if (str.includes('{exe}')) str = str.replace(/\{exe\}/g, app.getPath('exe'))
-	if (str.includes('{home}')) str = str.replace(/\{home\}/g, app.getPath('home'))
-	if (str.includes('{module}')) str = str.replace(/\{module\}/g, app.getPath('module'))
-	if (str.includes('{music}')) str = str.replace(/\{music\}/g, app.getPath('music'))
-	if (str.includes('{pictures}')) str = str.replace(/\{pictures\}/g, app.getPath('pictures'))
-	if (str.includes('{recent}')) str = str.replace(/\{recent\}/g, app.getPath('recent'))
-	if (str.includes('{temp}')) str = str.replace(/\{temp\}/g, app.getPath('temp'))
-	if (str.includes('{userData}')) str = str.replace(/\{userData\}/g, app.getPath('userData'))
-	if (str.includes('{videos}')) str = str.replace(/\{videos\}/g, app.getPath('videos'))
-	return str
-}
-{dirName}|{app}|{appData}|{cache}|{crashDumps}|{desktop}|{documents}|{downloads}|{exe}|{home}|{logs}|{module}|{music}|{pictures}|{recent}|{temp}|{userData}|{videos}
-
-* select folder creaton PathType.
-* 
-* **Type `lowElectron`**: get path from `app.getPath()` then add {`appFolderName`} to it.
-* 
-* **Type `rawPath`**: get path from `app.getPath()` without any change.
-* 
-* **Type `customName`**: get path from `app.getPath()` then add your `"customName"` property to it.
-* 
-* Default is `"lowElectron"`
-
-//! [Start] Checking AppPaths Configs
-const appP = cfg.AppPaths || null
-const AppPaths = {}
-const dPNames = ['documents', 'temp', 'cache', 'downloads', 'music', 'pictures', 'videos', 'appData', 'userData', 'desktop', 'crashDumps', 'home', 'logs']
-if (appP != null && typeof appP == 'object') {
-	for (const n of dPNames) {
-		tmp = appP[n] || null
-		if (tmp == null || typeof tmp != 'object') continue
-		if (tmp.type == 'rawPath') AppPaths[n] = app.getPath(n)
-		else if (tmp.type == 'customName') {
-			if (typeof tmp.customName != 'string') {
-				console.warn('[WARN] BetterElectron.json->AppPaths->' + n + ': when type="customName" then customName="a String!"')
-				AppPaths[n] = app.getPath(n) + '\\' + AppInfo.appFoldersName
-				continue
-			}
-			if (invalidFileNameChars.exec(tmp.customName) == null) {
-				AppPaths[n] = app.getPath(n) + '\\' + tmp.customName
-				continue
-			}
-
-			console.warn('[WARN] BetterElectron.json->AppPaths->' + n + '->customName: contains invalid character')
-			AppPaths[n] = app.getPath(n) + '\\' + AppInfo.appFoldersName
-		} else AppPaths[n] = app.getPath(n) + '\\' + AppInfo.appFoldersName
-	}
-}
-//! [End] Checking AppPaths Configs
-*/
